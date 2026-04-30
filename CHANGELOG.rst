@@ -1,6 +1,61 @@
 Changelog
 =========
 
+1.4.0 (2025-10-18)
+------------------
+
+- [ADDED] Added ``week_start`` parameter to ``floor()`` and ``ceil()`` methods. `PR #1222 <https://github.com/arrow-py/arrow/pull/1222>`_
+- [ADDED] Added ``FORMAT_RFC3339_STRICT`` with a T separator. `PR #1201 <https://github.com/arrow-py/arrow/pull/1201>`_
+- [ADDED] Added Macedonian in Latin locale support. `PR #1200 <https://github.com/arrow-py/arrow/pull/1200>`_
+- [ADDED] Added Persian/Farsi locale support. `PR #1190 <https://github.com/arrow-py/arrow/pull/1190>`_
+- [ADDED] Added week and weeks to Thai locale timeframes. `PR #1218 <https://github.com/arrow-py/arrow/pull/1218>`_
+- [ADDED] Added weeks to Catalan locale. `PR #1189 <https://github.com/arrow-py/arrow/pull/1189>`_
+- [ADDED] Added Persian names of months, month-abbreviations and day-abbreviations in Gregorian calendar. `PR #1172 <https://github.com/arrow-py/arrow/pull/1172>`_
+- [CHANGED] Migrated Arrow to use ZoneInfo for timezones instead of pytz. `PR #1217 <https://github.com/arrow-py/arrow/pull/1217>`_
+- [FIXED] Fixed humanize month limits. `PR #1224 <https://github.com/arrow-py/arrow/pull/1224>`_
+- [FIXED] Fixed type hint of ``Arrow.__getattr__``. `PR #1171 <https://github.com/arrow-py/arrow/pull/1171>`_
+- [FIXED] Fixed spelling and removed poorly used expressions in Korean locale. `PR #1181 <https://github.com/arrow-py/arrow/pull/1181>`_
+- [FIXED] Updated ``shift()`` method for issue #1145. `PR #1194 <https://github.com/arrow-py/arrow/pull/1194>`_
+- [FIXED] Improved Greek locale translations (seconds, days, "ago", and month typo). `PR #1184 <https://github.com/arrow-py/arrow/pull/1184>`_, `PR #1186 <https://github.com/arrow-py/arrow/pull/1186>`_
+- [FIXED] Addressed ``datetime.utcnow`` deprecation warning. `PR #1182 <https://github.com/arrow-py/arrow/pull/1182>`_
+- [INTERNAL] Added codecov test results. `PR #1223 <https://github.com/arrow-py/arrow/pull/1223>`_
+- [INTERNAL] Updated CI dependencies (actions/setup-python, actions/checkout, codecov/codecov-action, actions/cache).
+- [INTERNAL] Added docstrings to parser.py. `PR #1010 <https://github.com/arrow-py/arrow/pull/1010>`_
+- [INTERNAL] Updated Python versions support and bumped CI dependencies. `PR #1177 <https://github.com/arrow-py/arrow/pull/1177>`_
+- [INTERNAL] Added dependabot for GitHub actions. `PR #1193 <https://github.com/arrow-py/arrow/pull/1193>`_
+- [INTERNAL] Moved dateutil types to test requirements. `PR #1183 <https://github.com/arrow-py/arrow/pull/1183>`_
+- [INTERNAL] Added documentation link for ``arrow.format``. `PR #1180 <https://github.com/arrow-py/arrow/pull/1180>`_
+
+1.3.0 (2023-09-30)
+------------------
+
+- [ADDED] Added official support for Python 3.11 and 3.12.
+- [ADDED] Added dependency on ``types-python-dateutil`` to improve Arrow mypy compatibility. `PR #1102 <https://github.com/arrow-py/arrow/pull/1102>`_
+- [FIX] Updates to Italian, Romansh, Hungarian, Finish and Arabic locales.
+- [FIX] Handling parsing of UTC prefix in timezone strings.
+- [CHANGED] Update documentation to improve readability.
+- [CHANGED] Dropped support for Python 3.6 and 3.7, which are end-of-life.
+- [INTERNAL] Migrate from ``setup.py``/Twine to ``pyproject.toml``/Flit for packaging and distribution.
+- [INTERNAL] Adopt ``.readthedocs.yaml`` configuration file for continued ReadTheDocs support.
+
+1.2.3 (2022-06-25)
+------------------
+
+- [NEW] Added Amharic, Armenian, Georgian, Laotian and Uzbek locales.
+- [FIX] Updated Danish locale and associated tests.
+- [INTERNAL] Small fixes to CI.
+
+1.2.2 (2022-01-19)
+------------------
+
+- [NEW] Added Kazakh locale.
+- [FIX] The Belarusian, Bulgarian, Czech, Macedonian, Polish, Russian, Slovak and Ukrainian locales now support ``dehumanize``.
+- [FIX] Minor bug fixes and improvements to ChineseCN, Indonesian, Norwegian, and Russian locales.
+- [FIX] Expanded testing for multiple locales.
+- [INTERNAL] Started using ``xelatex`` for pdf generation in documentation.
+- [INTERNAL] Split requirements file into ``requirements.txt``, ``requirements-docs.txt`` and ``requirements-tests.txt``.
+- [INTERNAL] Added ``flake8-annotations`` package for type linting in ``pre-commit``.
+
 1.2.1 (2021-10-24)
 ------------------
 
@@ -267,7 +322,7 @@ After 8 years we're pleased to announce Arrow v1.0. Thanks to the entire Python 
 - [FIX] Consolidated and simplified German locales.
 - [INTERNAL] Moved testing suite from nosetest/Chai to pytest/pytest-mock.
 - [INTERNAL] Converted xunit-style setup and teardown functions in tests to pytest fixtures.
-- [INTERNAL] Setup Github Actions for CI alongside Travis.
+- [INTERNAL] Setup GitHub Actions for CI alongside Travis.
 - [INTERNAL] Help support Arrow's future development by donating to the project on `Open Collective <https://opencollective.com/arrow>`_.
 
 0.15.5 (2020-01-03)
@@ -641,7 +696,7 @@ The following will work in v0.15.0:
 - [NEW] Brazilian locale (Augusto2112)
 - [NEW] Dutch locale (OrangeTux)
 - [NEW] Italian locale (Pertux)
-- [NEW] Austrain locale (LeChewbacca)
+- [NEW] Austrian locale (LeChewbacca)
 - [NEW] Tagalog locale (Marksteve)
 - [FIX] Corrected spelling and day numbers in German locale (LeChewbacca)
 - [FIX] Factory ``get`` method should now handle unicode strings correctly (Bwells)

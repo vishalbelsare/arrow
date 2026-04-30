@@ -5,15 +5,12 @@ construction scenarios.
 
 """
 
-
 import calendar
-from datetime import date, datetime
+from datetime import date, datetime, timezone
 from datetime import tzinfo as dt_tzinfo
 from decimal import Decimal
 from time import struct_time
 from typing import Any, List, Optional, Tuple, Type, Union, overload
-
-from dateutil import tz as dateutil_tz
 
 from arrow import parser
 from arrow.arrow import TZ_EXPR, Arrow
@@ -41,8 +38,7 @@ class ArrowFactory:
         locale: str = DEFAULT_LOCALE,
         tzinfo: Optional[TZ_EXPR] = None,
         normalize_whitespace: bool = False,
-    ) -> Arrow:
-        ...  # pragma: no cover
+    ) -> Arrow: ...  # pragma: no cover
 
     @overload
     def get(
@@ -62,8 +58,7 @@ class ArrowFactory:
         locale: str = DEFAULT_LOCALE,
         tzinfo: Optional[TZ_EXPR] = None,
         normalize_whitespace: bool = False,
-    ) -> Arrow:
-        ...  # pragma: no cover
+    ) -> Arrow: ...  # pragma: no cover
 
     @overload
     def get(
@@ -74,8 +69,7 @@ class ArrowFactory:
         locale: str = DEFAULT_LOCALE,
         tzinfo: Optional[TZ_EXPR] = None,
         normalize_whitespace: bool = False,
-    ) -> Arrow:
-        ...  # pragma: no cover
+    ) -> Arrow: ...  # pragma: no cover
 
     @overload
     def get(
@@ -86,8 +80,7 @@ class ArrowFactory:
         locale: str = DEFAULT_LOCALE,
         tzinfo: Optional[TZ_EXPR] = None,
         normalize_whitespace: bool = False,
-    ) -> Arrow:
-        ...  # pragma: no cover
+    ) -> Arrow: ...  # pragma: no cover
 
     def get(self, *args: Any, **kwargs: Any) -> Arrow:
         """Returns an :class:`Arrow <arrow.arrow.Arrow>` object based on flexible inputs.
@@ -230,7 +223,7 @@ class ArrowFactory:
             elif not isinstance(arg, str) and is_timestamp(arg):
                 if tz is None:
                     # set to UTC by default
-                    tz = dateutil_tz.tzutc()
+                    tz = timezone.utc
                 return self.type.fromtimestamp(arg, tzinfo=tz)
 
             # (Arrow) -> from the object's datetime @ tzinfo
@@ -267,11 +260,9 @@ class ArrowFactory:
                 raise TypeError(f"Cannot parse single argument of type {type(arg)!r}.")
 
         elif arg_count == 2:
-
             arg_1, arg_2 = args[0], args[1]
 
             if isinstance(arg_1, datetime):
-
                 # (datetime, tzinfo/str) -> fromdatetime @ tzinfo
                 if isinstance(arg_2, (dt_tzinfo, str)):
                     return self.type.fromdatetime(arg_1, tzinfo=arg_2)
@@ -281,7 +272,6 @@ class ArrowFactory:
                     )
 
             elif isinstance(arg_1, date):
-
                 # (date, tzinfo/str) -> fromdate @ tzinfo
                 if isinstance(arg_2, (dt_tzinfo, str)):
                     return self.type.fromdate(arg_1, tzinfo=arg_2)
@@ -341,7 +331,7 @@ class ArrowFactory:
         """
 
         if tz is None:
-            tz = dateutil_tz.tzlocal()
+            tz = datetime.now().astimezone().tzinfo
         elif not isinstance(tz, dt_tzinfo):
             tz = parser.TzinfoParser.parse(tz)
 
